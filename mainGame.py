@@ -10,7 +10,7 @@ pygame.init()
 screen = pygame.display.set_mode((600, 400))
 gray = (130, 84, 70)
 red = (255, 255, 255)
-paddle = pygame.image.load("img/paddle.png").convert_alpha()
+paddle = pygame.image.load("py_toyGame/img/paddle.png").convert_alpha()
 
 
 def collide(ball, block):
