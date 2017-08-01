@@ -10,7 +10,9 @@ pygame.init()
 screen = pygame.display.set_mode((600, 400))
 gray = (130, 84, 70)
 red = (255, 255, 255)
-paddle = pygame.image.load("py_toyGame/img/paddle.png").convert_alpha()
+
+# paddle = pygame.image.load("py_toyGame/img/paddle.png").convert_alpha()
+# print paddle.get_rect().top
 
 
 def collide(ball, block):
@@ -39,7 +41,7 @@ def isBallCollideEmeny(ball, emeny):
             emeny.alive = False
 
 
-clsPaddle = Paddle(screen, paddle)
+clsPaddle = Paddle(screen)
 framerate = pygame.time.Clock()
 clsBall = Ball(screen)
 clsEmeny = Enemy(screen)

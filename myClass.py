@@ -19,11 +19,12 @@ class Paddle(Block):
     """docstring for Paddle."""
     moveSpeed = 10
 
-    def __init__(self, screen, paddle):
+    def __init__(self, screen):
         self.screen = screen
-        self.block = paddle
         self.x = 250
         self.y = 350
+        self.img = pygame.image.load(
+            "py_toyGame/img/paddle.png").convert_alpha()
 
     def moveLeft(self):
         self.x -= Paddle.moveSpeed
@@ -34,6 +35,9 @@ class Paddle(Block):
         self.x += Paddle.moveSpeed
         if self.x >= 520:
             self.x = 520
+
+    def draw(self):
+        self.screen.blit(self.img, (self.x, self.y))
 
 
 class Ball(object):
@@ -71,4 +75,8 @@ class Ball(object):
         self.xSpeed *= -1
 
     def yBallReverse(self):
+        self.ySpeed *= -1
+
+    def xyBallReverse(self):
+        self.xSpeed *= -1
         self.ySpeed *= -1
