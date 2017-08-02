@@ -25,7 +25,7 @@ def collide(ball, block):
         if ball.x - Ball.ballRid <= block.x + 85 and ball.x + Ball.ballRid >= block.x:
             ball.xBallReverse()
             isCollide = True
-
+    collide here
     return isCollide
 
 
