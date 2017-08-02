@@ -38,7 +38,7 @@ def collide(ball, block):
                 ball.x = block.x + blockWidth + Ball.ballRid
             ball.xBallReverse()
             isCollide = True
-    collide here
+
     return isCollide
 
 
