@@ -1,4 +1,10 @@
 import pygame
+import os
+
+pwd = os.getcwd()
+# print pwd
+
+paddle_src = pwd + '/img/paddle.png'
 
 
 class Block(object):
@@ -6,6 +12,7 @@ class Block(object):
 
     def __init__(self, screen, block):
         super(Block, self).__init__()
+        self.name = "Block"
         self.screen = screen
         self.x = 0
         self.y = 0
@@ -20,11 +27,12 @@ class Paddle(Block):
     moveSpeed = 10
 
     def __init__(self, screen):
+        self.name = "Paddle"
         self.screen = screen
         self.x = 250
         self.y = 350
-        self.img = pygame.image.load(
-            "py_toyGame/img/paddle.png").convert_alpha()
+        self.img_src = paddle_src
+        self.img = pygame.image.load(self.img_src).convert_alpha()
 
     def moveLeft(self):
         self.x -= Paddle.moveSpeed
@@ -47,6 +55,7 @@ class Ball(object):
     ballRid = 15
 
     def __init__(self, screen):
+        self.name = "Ball"
         self.x = 250
         self.y = 250
         self.xSpeed = Ball.ballSpeed
@@ -59,9 +68,17 @@ class Ball(object):
 
         if self.x < Ball.ballRid or self.x > 600 - Ball.ballRid:
             # self.x -= Ball.ballSpeedhhhhhh
+            if self.x < Ball.ballRid:
+                self.x = Ball.ballRid
+            else:
+                self.x = 600 - Ball.ballRid
             self.xSpeed *= -1
 
         elif self.y < Ball.ballRid or self.y > 400 - Ball.ballRid:
+            if self.y < Ball.ballRid:
+                self.y = Ball.ballRid
+            else:
+                self.y = 400 - Ball.ballRid
             self.ySpeed *= -1
             # self.y -= Ball.ballSpeed
         self.x += self.xSpeed
@@ -73,9 +90,11 @@ class Ball(object):
 
     def xBallReverse(self):
         self.xSpeed *= -1
+        self.moveBall()
 
     def yBallReverse(self):
         self.ySpeed *= -1
+        self.moveBall()
 
     def xyBallReverse(self):
         self.xSpeed *= -1
