@@ -6,6 +6,8 @@ from pygame.locals import *
 from gameLevel import *
 from myClass import *
 
+print "hi"
+
 pygame.init()
 screen = pygame.display.set_mode((600, 400))
 gray = (130, 84, 70)
