@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import pygame
 from pygame.locals import *
 
@@ -13,18 +12,32 @@ screen = pygame.display.set_mode((600, 400))
 gray = (130, 84, 70)
 red = (255, 255, 255)
 
-# paddle = pygame.image.load("py_toyGame/img/paddle.png").convert_alpha()
-# print paddle.get_rect().top
-
 
 def collide(ball, block):
+
+    # print type(block)
+    if block.name == 'Paddle':
+        blockRec = pygame.Surface.get_rect(block.img)
+    else:
+        blockRec = pygame.Rect(block.Rect)
+    blockWidth = blockRec.width
+    blockHeight = blockRec.height
+
     isCollide = False
-    if ball.x >= block.x and ball.x <= block.x + 85:
-        if ball.y >= block.y - Ball.ballRid and ball.y <= block.y + 20 + Ball.ballRid:
+    if ball.x >= block.x and ball.x <= block.x + blockWidth:
+        if ball.y >= block.y - Ball.ballRid and ball.y <= block.y + blockHeight + Ball.ballRid:
+            if block.y - Ball.ballRid <= ball.y <= block.y:
+                ball.y = block.y - Ball.ballRid
+            elif block.y + blockHeight <= ball.y <= block.y + blockHeight + Ball.ballRid:
+                ball.y = block.y + blockHeight + Ball.ballRid
             ball.yBallReverse()
             isCollide = True
-    elif ball.y + Ball.ballRid >= block.y and ball.y - Ball.ballRid <= block.y + 21:
-        if ball.x - Ball.ballRid <= block.x + 85 and ball.x + Ball.ballRid >= block.x:
+    elif ball.y + Ball.ballRid >= block.y and ball.y - Ball.ballRid <= block.y + blockHeight:
+        if ball.x - Ball.ballRid <= block.x + blockWidth and ball.x + Ball.ballRid >= block.x:
+            if block.x - Ball.ballRid <= ball.x <= block.x:
+                ball.x = block.x - Ball.ballRid
+            elif block.x + blockWidth <= ball.x <= block.x + blockWidth + Ball.ballRid:
+                ball.x = block.x + blockWidth + Ball.ballRid
             ball.xBallReverse()
             isCollide = True
 

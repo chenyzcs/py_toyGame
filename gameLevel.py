@@ -7,6 +7,7 @@ class Enemy(Block):
     """Document for Enemy"""
 
     def __init__(self, screen):
+        self.name = "Enemy"
         self.x = 100
         self.y = 100
         self.screen = screen
